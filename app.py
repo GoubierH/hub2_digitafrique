@@ -14,6 +14,11 @@ API_KEY = os.getenv("HUB2_API_KEY")
 if not API_KEY:
     raise ValueError("API_KEY is not set in the environment variables")
 
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"message": "Hello from Flask!"})
+
+
 # Route pour créer une PaymentIntent
 @app.route('/create_payment_intent', methods=['POST'])
 def create_payment_intent():
