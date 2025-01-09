@@ -59,4 +59,4 @@ def check_payment_status(payment_intent_id):
         return jsonify({"error": "Failed to retrieve payment status", "details": response.json()}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=8080,debug=False)
