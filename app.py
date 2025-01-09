@@ -52,6 +52,12 @@ def create_payment_intent():
     else:
         return jsonify({"error": "Failed to create PaymentIntent", "details": response.json()}), 500
 
+
+@app.route('/test', methods=['POST'])
+def test_post():
+    return jsonify({"message": "POST request fonctionne"})
+
+
 # Route pour vérifier le statut d'un paiement
 @app.route('/check_payment_status/<payment_intent_id>', methods=['GET'])
 def check_payment_status(payment_intent_id):
