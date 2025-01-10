@@ -19,7 +19,7 @@ def home():
     return jsonify({"message": "Hello from Flask!"})
 
 
-@app.route('/create_payment_intent', methods=['POST'])
+@app.route('/payment', methods=['POST'])
 def create_payment_intent():
     print("Requête reçue sur /create_payment_intent")  # Confirme que la route est atteinte
     print(f"Données reçues : {request.json}")         # Affiche les données envoyées
