@@ -19,9 +19,11 @@ def home():
     return jsonify({"message": "Hello from Flask!"})
 
 
-# Route pour créer une PaymentIntent
 @app.route('/create_payment_intent', methods=['POST'])
 def create_payment_intent():
+    print("Requête reçue sur /create_payment_intent")  # Confirme que la route est atteinte
+    print(f"Données reçues : {request.json}")         # Affiche les données envoyées
+    
     data = request.json  # Récupérer les données JSON envoyées
     customer_reference = data.get("customerReference")
     purchase_reference = data.get("purchaseReference")
@@ -45,8 +47,11 @@ def create_payment_intent():
         "Content-Type": "application/json"
     }
 
+    print(f"Payload envoyé : {payload}")
     response = requests.post(HUB2_API_BASE_URL, headers=headers, json=payload)
 
+    print(f"Réponse de l'API Hub2 : {response.status_code}, {response.text}")
+    
     if response.status_code == 200:
         return jsonify(response.json())  # Retourner les données de la PaymentIntent créée
     else:
